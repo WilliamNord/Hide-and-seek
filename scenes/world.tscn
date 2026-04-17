@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c5156k0cy7g13"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_e5uuo"]
+
+[node name="world" type="Node3D" unique_id=1528248698]
+
+[node name="GridMap" type="GridMap" parent="." unique_id=200087222]
+mesh_library = SubResource("MeshLibrary_e5uuo")
