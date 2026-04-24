@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c5156k0cy7g13"]
 
+[ext_resource type="PackedScene" uid="uid://p55js0fsfvji" path="res://scenes/player.tscn" id="1_nnsk1"]
+
 [sub_resource type="MeshLibrary" id="MeshLibrary_e5uuo"]
 item/0/name = ""
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -8,7 +10,46 @@ item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_e5uuo"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nnsk1"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
+sky_top_color = Color(0.40082532, 0.43858358, 0.6033743, 1)
+sky_horizon_color = Color(0.78431374, 0.59607846, 0.9254902, 1)
+sky_curve = 0.22735791
+ground_bottom_color = Color(0.12795702, 0.17396188, 0.26203313, 1)
+ground_horizon_color = Color(0.5605253, 0.6749244, 0.7354116, 1)
+ground_curve = 0.08574186
+sun_angle_max = 202.38
+sun_curve = 0.049481694
+energy_multiplier = 1.26
+
+[sub_resource type="Sky" id="Sky_rwgxs"]
+sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
+
+[sub_resource type="Environment" id="Environment_nnsk1"]
+background_mode = 2
+sky = SubResource("Sky_rwgxs")
+sky_custom_fov = 16.7
+
 [node name="world" type="Node3D" unique_id=1528248698]
 
 [node name="GridMap" type="GridMap" parent="." unique_id=200087222]
 mesh_library = SubResource("MeshLibrary_e5uuo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=187843702]
+mesh = SubResource("PlaneMesh_e5uuo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=211257556]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=389764308]
+shape = SubResource("ConcavePolygonShape3D_nnsk1")
+
+[node name="player" parent="." unique_id=70680786 instance=ExtResource("1_nnsk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36401367, 1.2488362, -0.003978014)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=194326513]
+environment = SubResource("Environment_nnsk1")
