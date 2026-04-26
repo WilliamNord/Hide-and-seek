@@ -33,7 +33,7 @@ sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
 [sub_resource type="Environment" id="Environment_nnsk1"]
 background_mode = 2
 sky = SubResource("Sky_rwgxs")
-sky_custom_fov = 16.7
+sky_rotation = Vector3(-0.93375117, 0, 0)
 
 [node name="world" type="Node3D" unique_id=1528248698]
 
