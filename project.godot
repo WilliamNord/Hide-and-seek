@@ -15,6 +15,12 @@ run/main_scene="uid://c5156k0cy7g13"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=2304
+window/size/viewport_height=1296
+window/size/mode=2
+
 [input]
 
 forward={

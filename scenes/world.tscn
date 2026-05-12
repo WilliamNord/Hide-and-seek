@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5156k0cy7g13"]
 
 [ext_resource type="PackedScene" uid="uid://p55js0fsfvji" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="Shader" uid="uid://dxu1mbvy2rgas" path="res://scenes/world.gdshader" id="1_rwgxs"]
 
 [sub_resource type="MeshLibrary" id="MeshLibrary_e5uuo"]
 item/0/name = ""
@@ -10,8 +11,23 @@ item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wyf3"]
+render_priority = 0
+shader = ExtResource("1_rwgxs")
+shader_parameter/color_a = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/color_b = Color(0.65, 0.65, 0.65, 1)
+shader_parameter/tile_size = 2.0
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_e5uuo"]
 size = Vector2(50, 50)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_nnsk1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnsk1"]
+shading_mode = 0
+albedo_color = Color(0.21010199, 0.1151352, 0.018684994, 1)
+albedo_texture = SubResource("PortableCompressedTexture2D_nnsk1")
+refraction_enabled = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nnsk1"]
 data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
@@ -33,7 +49,6 @@ sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
 [sub_resource type="Environment" id="Environment_nnsk1"]
 background_mode = 2
 sky = SubResource("Sky_rwgxs")
-sky_rotation = Vector3(-0.93375117, 0, 0)
 
 [node name="world" type="Node3D" unique_id=1528248698]
 
@@ -41,7 +56,9 @@ sky_rotation = Vector3(-0.93375117, 0, 0)
 mesh_library = SubResource("MeshLibrary_e5uuo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=187843702]
+material_override = SubResource("ShaderMaterial_4wyf3")
 mesh = SubResource("PlaneMesh_e5uuo")
+surface_material_override/0 = SubResource("StandardMaterial3D_nnsk1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=211257556]
 
